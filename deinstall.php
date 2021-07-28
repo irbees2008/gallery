@@ -47,7 +47,7 @@ if ('commit' == $action) {
         // Save configuration parameters of plugins
         $cPlugin->setConfig($plugins['config']);
         // Save configuration parameters of plugins
-        $cPlugin->saveConfig();
+        pluginsSaveConfig();
         $ULIB->saveConfig();
         $UHANDLER->saveConfig();
 

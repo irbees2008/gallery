@@ -534,7 +534,7 @@ function showWidgetList($plugin, $action)
             // Load CORE Plugin
             $cPlugin = CPlugin::instance();
             // Save configuration parameters of plugins
-            $cPlugin->saveConfig();
+            pluginsSaveConfig();
 
             msg(['message' => $lang['gallery:info_update_record']]);
         } elseif ('widget_dell' == $action) {
@@ -554,7 +554,7 @@ function showWidgetList($plugin, $action)
                 // Load CORE Plugin
                 $cPlugin = CPlugin::instance();
                 // Save configuration parameters of plugins
-                $cPlugin->saveConfig();
+                pluginsSaveConfig();
             }
             msg(['type' => 'info', 'message' => $lang['gallery:info_delete']]);
         }

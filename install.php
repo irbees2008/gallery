@@ -9,7 +9,7 @@ function plugin_gallery_install($action)
 {
     global $lang, $mysql, $config;
 
-    if ($action != 'autoapply') {
+    if ('autoapply' !== $action) {
         loadPluginLang('gallery', 'admin', '', '', ':');
     }
 
@@ -319,7 +319,7 @@ function plugin_gallery_install($action)
             break;
         case 'autoapply':
         case 'apply':
-            if (fixdb_plugin_install('gallery', $db_update, 'install', ('autoapply' == $action) ? true : false)) {
+            if (fixdb_plugin_install('gallery', $db_update, 'install', ('autoapply' === $action) ? true : false)) {
 
                 // Обновляем поле module в комментариях, если не задано
                 $mysql->query('update '.prefix."_comments set module='news' where module=''");
@@ -339,7 +339,7 @@ function plugin_gallery_install($action)
                 // Load CORE Plugin
                 $cPlugin = CPlugin::instance();
                 // Save configuration parameters of plugins
-                $cPlugin->saveConfig();
+                pluginsSaveConfig();
                 $ULIB->saveConfig();
                 $UHANDLER->saveConfig();
 
