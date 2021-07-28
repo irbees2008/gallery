@@ -452,7 +452,7 @@ class PluginGallery
 
         // Комментарии не тронуты
         // Вернуться и доделать. Эй, куда пошел
-        if ($cPlugin->isActive('comments')) {
+        if (getPluginStatusActive('comments')) {
             // Prepare params for call
             // module - DB table images
             $callingCommentsParams = ['outprint' => true, 'total' => $row['com'], 'module' => 'images'];

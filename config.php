@@ -68,7 +68,7 @@ function main($plugin, $action)
 
     // Check to dependence plugin
     $dependence = [];
-    if (! $cPlugin->isActive('comments')) {
+    if (! getPluginStatusActive('comments')) {
         $dependence['comments'] = 'comments';
     }
 
