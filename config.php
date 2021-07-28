@@ -62,7 +62,7 @@ function main($plugin, $action)
     $cPlugin = CPlugin::instance();
 
     // Prepare configuration parameters
-    if (empty($skList = $cPlugin->getThemeSkin($plugin))) {
+    if (empty($skList = skinsListForPlugin($plugin))) {
         msg(['type' => 'danger', 'message' => $lang['msg.no_skin']]);
     }
 
@@ -368,7 +368,7 @@ function edit($plugin, $action)
     $cPlugin = CPlugin::instance();
 
     // Prepare configuration parameters
-    if (empty($skList = $cPlugin->getThemeSkin($plugin))) {
+    if (empty($skList = skinsListForPlugin($plugin))) {
         msg(['type' => 'danger', 'message' => $lang['msg.no_skin']]);
     }
 
@@ -596,7 +596,7 @@ function editWidget($plugin, $action)
     $cPlugin = CPlugin::instance();
 
     // Prepare configuration parameters
-    if (empty($skList = $cPlugin->getThemeSkin($plugin))) {
+    if (empty($skList = skinsListForPlugin($plugin))) {
         msg(['type' => 'danger', 'message' => $lang['msg.no_skin']]);
     }
 
@@ -752,4 +752,26 @@ function GetKeyFromName($name, $array)
         }
     }
     return false;
+}
+
+function skinsListForPlugin($plugin)
+{
+    $skList = [];
+
+    $skinsDirectory = opendir(
+        extras_dir."/{$plugin}/tpl/skins"
+    );
+
+    if (false !== $skinsDirectory) {
+
+        while ($skFile = readdir($skinsDirectory)) {
+            if (! preg_match('/^\./', $skFile)) {
+                $skList[$skFile] = $skFile;
+            }
+        }
+
+        closedir($skinsDirectory);
+    }
+
+    return $skList;
 }
