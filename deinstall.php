@@ -8,7 +8,7 @@ if (! defined('NGCMS')) {
 }
 
 // Load lang files
-Lang::loadPlugin($plugin, 'admin', '', ':');
+loadPluginLang($plugin, 'admin', '', '', ':');
 
 $db_update = [
     [

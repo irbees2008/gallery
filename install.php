@@ -10,7 +10,7 @@ function plugin_gallery_install($action)
     global $mysql, $config;
 
     if ($action != 'autoapply') {
-        Lang::loadPlugin('gallery', 'admin', '', ':');
+        loadPluginLang('gallery', 'admin', '', '', ':');
     }
 
     // Fill DB_UPDATE configuration scheme

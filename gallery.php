@@ -20,8 +20,8 @@ class PluginGallery
 
     public function __construct()
     {
-        Lang::loadPlugin('gallery', 'site', '', ':');
-        Lang::loadPlugin('comments', 'site', '', ':');
+        loadPluginLang('gallery', 'site', '', '', ':');
+        loadPluginLang('comments', 'site', '', '', ':');
 
         $this->loadParams();
         $this->loadGalleries();
