@@ -7,7 +7,7 @@ if (! defined('NGCMS')) {
 
 function plugin_gallery_install($action)
 {
-    global $mysql, $config;
+    global $lang, $mysql, $config;
 
     if ($action != 'autoapply') {
         loadPluginLang('gallery', 'admin', '', '', ':');
@@ -60,17 +60,17 @@ function plugin_gallery_install($action)
             '' => [
                 'matchRegex' => '.+?',
                 'descr' => [
-                    $config['default_lang'] => __('gallery:ULIB_main'),
+                    $config['default_lang'] => $lang['gallery:ULIB_main'],
                 ],
             ],
             'page' => [
                 'matchRegex' => '\d{1,4}',
                 'descr' => [
-                    $config['default_lang'] => __('gallery:ULIB_page'),
+                    $config['default_lang'] => $lang['gallery:ULIB_page'],
                 ],
             ],
         ],
-            'descr' => [$config['default_lang'] => __('gallery:ULIB_main_d')],
+            'descr' => [$config['default_lang'] => $lang['gallery:ULIB_main_d']],
         ]
     );
 
@@ -81,23 +81,23 @@ function plugin_gallery_install($action)
             'name' => [
                 'matchRegex' => '.+?',
                 'descr' => [
-                    $config['default_lang'] => __('gallery:ULIB_name'),
+                    $config['default_lang'] => $lang['gallery:ULIB_name'],
                 ],
             ],
             'id' => [
                 'matchRegex' => '\d{1,4}',
                 'descr' => [
-                    $config['default_lang'] => __('gallery:ULIB_id'),
+                    $config['default_lang'] => $lang['gallery:ULIB_id'],
                 ],
             ],
             'page' => [
                 'matchRegex' => '\d{1,4}',
                 'descr' => [
-                    $config['default_lang'] => __('gallery:ULIB_page'),
+                    $config['default_lang'] => $lang['gallery:ULIB_page'],
                 ],
             ],
         ],
-            'descr' => [$config['default_lang'] => __('gallery:ULIB_gallery_d')],
+            'descr' => [$config['default_lang'] => $lang['gallery:ULIB_gallery_d']],
         ]
     );
 
@@ -108,23 +108,23 @@ function plugin_gallery_install($action)
             'gallery' => [
                 'matchRegex' => '.+?',
                 'descr' => [
-                    $config['default_lang'] => __('gallery:ULIB_name'),
+                    $config['default_lang'] => $lang['gallery:ULIB_name'],
                 ],
             ],
             'name' => [
                 'matchRegex' => '.+?',
                 'descr' => [
-                    $config['default_lang'] => __('gallery:ULIB_image_name'),
+                    $config['default_lang'] => $lang['gallery:ULIB_image_name'],
                 ],
             ],
             'id' => [
                 'matchRegex' => '\d{1,4}',
                 'descr' => [
-                    $config['default_lang'] => __('gallery:ULIB_image_id'),
+                    $config['default_lang'] => $lang['gallery:ULIB_image_id'],
                 ],
             ],
         ],
-            'descr' => [$config['default_lang'] => __('gallery:ULIB_image_d')],
+            'descr' => [$config['default_lang'] => $lang['gallery:ULIB_image_d']],
         ]
     );
 
@@ -135,7 +135,7 @@ function plugin_gallery_install($action)
             'name' => [
                 'matchRegex' => '.+?',
                 'descr' => [
-                    $config['default_lang'] => __('gallery:label_widget_name'),
+                    $config['default_lang'] => $lang['gallery:label_widget_name'],
                 ],
             ],
             'id' => [
@@ -151,7 +151,7 @@ function plugin_gallery_install($action)
                 ],
             ],
         ],
-            'descr' => [$config['default_lang'] => __('gallery:ULIB_gallery_d')],
+            'descr' => [$config['default_lang'] => $lang['gallery:ULIB_gallery_d']],
         ]
     );
 
@@ -315,7 +315,7 @@ function plugin_gallery_install($action)
     // Apply requested action
     switch ($action) {
         case 'confirm':
-            generate_install_page('gallery', __('gallery:desc_install'));
+            generate_install_page('gallery', $lang['gallery:desc_install']);
             break;
         case 'autoapply':
         case 'apply':

@@ -20,13 +20,15 @@ class PluginGallery
 
     public function __construct()
     {
+        global  $lang;
+
         loadPluginLang('gallery', 'site', '', '', ':');
         loadPluginLang('comments', 'site', '', '', ':');
 
         $this->loadParams();
         $this->loadGalleries();
 
-        $this->pluginTitle = ! empty($this->params['seo_title']) ? $this->params['seo_title'] : __('gallery:title');
+        $this->pluginTitle = ! empty($this->params['seo_title']) ? $this->params['seo_title'] : $lang['gallery:title'];
     }
 
     // Load all params of plugin gallery
@@ -191,12 +193,12 @@ class PluginGallery
 
     public function indexPageAction($params)
     {
-        global $userROW, $template, $twig, $mysql, $TemplateCache, $SYSTEM_FLAGS;
+        global $userROW, $template, $twig, $lang, $mysql, $TemplateCache, $SYSTEM_FLAGS;
 
         $page = isset($params['page']) ? abs(intval($params['page'])) : 1;
 
         $SYSTEM_FLAGS['info']['title']['group'] = $this->pluginTitle;
-        $SYSTEM_FLAGS['info']['title']['item'] = __('gallery:page').' '.$page;
+        $SYSTEM_FLAGS['info']['title']['item'] = $lang['gallery:page'].' '.$page;
         if ($this->params['if_description'] and ! empty($this->params['seo_description'])) {
             $SYSTEM_FLAGS['meta']['description'] = $this->params['seo_description'];
         }
@@ -224,9 +226,9 @@ class PluginGallery
                 $paginationParams = ['pluginName' => 'gallery', 'pluginHandler' => '', 'params' => [], 'xparams' => [], 'paginator' => ['page', 0, false]];
                 templateLoadVariables(true);
                 $navigations = $TemplateCache['site']['#variables']['navigation'];
-                $pagesss .= ($page > 1) ? str_replace('%page%', __('prev_page'), str_replace('%link%', generatePageLink($paginationParams, $page - 1), $navigations['prevlink'])) : '';
+                $pagesss .= ($page > 1) ? str_replace('%page%', $lang['prev_page'], str_replace('%link%', generatePageLink($paginationParams, $page - 1), $navigations['prevlink'])) : '';
                 $pagesss .= generatePagination($page, 1, $pagesCount, 10, $paginationParams, $navigations);
-                $pagesss .= ($page < $pagesCount) ? str_replace('%page%', __('next_page'), str_replace('%link%', generatePageLink($paginationParams, $page + 1), $navigations['nextlink'])) : '';
+                $pagesss .= ($page < $pagesCount) ? str_replace('%page%', $lang['next_page'], str_replace('%link%', generatePageLink($paginationParams, $page + 1), $navigations['nextlink'])) : '';
             }
         }
 
@@ -247,7 +249,7 @@ class PluginGallery
 
     public function galleryPageAction($params)
     {
-        global $userROW, $template, $twig, $mysql, $TemplateCache, $SYSTEM_FLAGS;
+        global $userROW, $template, $twig, $lang, $mysql, $TemplateCache, $SYSTEM_FLAGS;
 
         $page = ! empty($params['page']) ? intval($params['page']) : 1;
         if ($page < 1) {
@@ -266,7 +268,7 @@ class PluginGallery
         }
 
         $SYSTEM_FLAGS['info']['title']['group'] = $this->pluginTitle.' '.$gallery['title'];
-        $SYSTEM_FLAGS['info']['title']['item'] = __('gallery:page').' '.$page;
+        $SYSTEM_FLAGS['info']['title']['item'] = $lang['gallery:page'].' '.$page;
         if ($this->params['if_description']) {
             $SYSTEM_FLAGS['meta']['description'] = $gallery['description'];
         }
@@ -322,9 +324,9 @@ class PluginGallery
                 $paginationParams = ['pluginName' => 'gallery', 'pluginHandler' => 'gallery', 'params' => ['id' => $gallery['id'], 'name' => $gallery['name']], 'xparams' => [], 'paginator' => ['page', 0, false]];
                 templateLoadVariables(true);
                 $navigations = $TemplateCache['site']['#variables']['navigation'];
-                $pagesss .= ($page > 1) ? str_replace('%page%', __('prev_page'), str_replace('%link%', generatePageLink($paginationParams, $page - 1), $navigations['prevlink'])) : '';
+                $pagesss .= ($page > 1) ? str_replace('%page%', $lang['prev_page'], str_replace('%link%', generatePageLink($paginationParams, $page - 1), $navigations['prevlink'])) : '';
                 $pagesss .= generatePagination($page, 1, $pagesCount, 10, $paginationParams, $navigations);
-                $pagesss .= ($page < $pagesCount) ? str_replace('%page%', __('next_page'), str_replace('%link%', generatePageLink($paginationParams, $page + 1), $navigations['nextlink'])) : '';
+                $pagesss .= ($page < $pagesCount) ? str_replace('%page%', $lang['next_page'], str_replace('%link%', generatePageLink($paginationParams, $page + 1), $navigations['nextlink'])) : '';
             }
         }
 
@@ -351,7 +353,7 @@ class PluginGallery
 
     public function imagePageAction($params)
     {
-        global $userROW, $template, $tpl, $twig, $mysql, $TemplateCache, $SYSTEM_FLAGS;
+        global $userROW, $template, $tpl, $twig, $lang, $mysql, $TemplateCache, $SYSTEM_FLAGS;
         global $galleries;
 
         // Load CORE Plugin
@@ -430,7 +432,7 @@ class PluginGallery
                 'pluginName' => 'gallery', 'pluginHandler' => 'image',
                 'params' => ['id' => $gallery['id'], 'gallery' => $gallery['name'], 'name' => $imageName], 'xparams' => [],
                 'paginator' => ['page', 0, false], ];
-            $prevlink = str_replace('%page%', __('gallery:prevlink'), str_replace('%link%', generatePageLink($paginationParams, 0), $nav['prevlink']));
+            $prevlink = str_replace('%page%', $lang['gallery:prevlink'], str_replace('%link%', generatePageLink($paginationParams, 0), $nav['prevlink']));
         } else {
             $prevlink = '';
         }
@@ -443,7 +445,7 @@ class PluginGallery
                 'pluginName' => 'gallery', 'pluginHandler' => 'image',
                 'params' => ['galleryID' => $gallery['id'], 'gallery' => $gallery['name'], 'name' => $imageName], 'xparams' => [],
                 'paginator' => ['page', 0, false], ];
-            $nextlink = str_replace('%page%', __('gallery:nextlink'), str_replace('%link%', generatePageLink($paginationParams, 0), $nav['nextlink']));
+            $nextlink = str_replace('%page%', $lang['gallery:nextlink'], str_replace('%link%', generatePageLink($paginationParams, 0), $nav['nextlink']));
         } else {
             $nextlink = '';
         }

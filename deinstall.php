@@ -54,5 +54,5 @@ if ('commit' == $action) {
         plugin_mark_deinstalled('gallery');
     }
 } else {
-    generate_install_page('gallery', __('gallery:desc_deinstall'), 'deinstall');
+    generate_install_page('gallery', $lang['gallery:desc_deinstall'], 'deinstall');
 }

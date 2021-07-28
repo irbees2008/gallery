@@ -56,13 +56,14 @@ switch ($action) {
 
 function main($plugin, $action)
 {
+    global $lang;
 
     // Load CORE Plugin
     $cPlugin = CPlugin::instance();
 
     // Prepare configuration parameters
     if (empty($skList = $cPlugin->getThemeSkin($plugin))) {
-        msg(['type' => 'danger', 'message' => __('msg.no_skin')]);
+        msg(['type' => 'danger', 'message' => $lang['msg.no_skin']]);
     }
 
     // Check to dependence plugin
@@ -73,12 +74,12 @@ function main($plugin, $action)
 
     // Fill configuration parameters
     $cfg = [
-        'description' => __($plugin.':description'),
+        'description' => $lang[$plugin.':description'],
         'dependence' => $dependence,
         'navigation' => [
-            ['class' => 'active', 'href' => 'admin.php?mod=extra-config&plugin=gallery', 'title' => __('config')],
-            ['href' => 'admin.php?mod=extra-config&plugin=gallery&action=list', 'title' => __('gallery:button_list')],
-            ['href' => 'admin.php?mod=extra-config&plugin=gallery&action=widget_list', 'title' => __('widgetList')],
+            ['class' => 'active', 'href' => 'admin.php?mod=extra-config&plugin=gallery', 'title' => $lang['config']],
+            ['href' => 'admin.php?mod=extra-config&plugin=gallery&action=list', 'title' => $lang['gallery:button_list']],
+            ['href' => 'admin.php?mod=extra-config&plugin=gallery&action=widget_list', 'title' => $lang['widgetList']],
         ],
         'submit' => [['type' => 'default'], ['type' => 'reinstall'], ['type' => 'clearCacheFiles']],
     ];
@@ -86,95 +87,95 @@ function main($plugin, $action)
     $cfgX = [];
     array_push($cfgX, [
         'name' => 'seo_title',
-        'title' => __('seo_title'),
-        'descr' => __('seo_title#desc'),
+        'title' => $lang['seo_title'],
+        'descr' => $lang['seo_title#desc'],
         'type' => 'input',
         'value' => pluginGetVariable($plugin, 'seo_title'),
     ]);
     array_push($cfgX, [
         'name' => 'seo_description',
-        'title' => __('seo_description'),
-        'descr' => __('seo_description#desc'),
+        'title' => $lang['seo_description'],
+        'descr' => $lang['seo_description#desc'],
         'type' => 'input',
         'value' => pluginGetVariable($plugin, 'seo_description'),
     ]);
     array_push($cfgX, [
         'name' => 'seo_keywords',
-        'title' => __('seo_keywords'),
-        'descr' => __('seo_keywords#desc'),
+        'title' => $lang['seo_keywords'],
+        'descr' => $lang['seo_keywords#desc'],
         'type' => 'input',
         'value' => pluginGetVariable($plugin, 'seo_keywords'),
     ]);
     array_push($cfg, [
         'mode' => 'group',
-        'title' => __('group.seo'),
+        'title' => $lang['group.seo'],
         'entries' => $cfgX,
     ]);
 
     $cfgX = [];
     array_push($cfgX, [
         'name' => 'if_description',
-        'title' => __('gallery:label_if_description'),
-        'descr' => __('gallery:desc_if_description'),
+        'title' => $lang['gallery:label_if_description'],
+        'descr' => $lang['gallery:desc_if_description'],
         'type' => 'select',
-        'values' => ['1' => __('yesa'), '0' => __('noa')],
+        'values' => ['1' => $lang['yesa'], '0' => $lang['noa']],
         'value' => pluginGetVariable($plugin, 'if_description'),
     ]);
     array_push($cfgX, [
         'name' => 'if_keywords',
-        'title' => __('gallery:label_if_keywords'),
-        'descr' => __('gallery:desc_if_keywords'),
+        'title' => $lang['gallery:label_if_keywords'],
+        'descr' => $lang['gallery:desc_if_keywords'],
         'type' => 'select',
-        'values' => ['1' => __('yesa'), '0' => __('noa')],
+        'values' => ['1' => $lang['yesa'], '0' => $lang['noa']],
         'value' => pluginGetVariable($plugin, 'if_keywords'),
     ]);
     array_push($cfgX, [
         'name' => 'galleries_count',
-        'title' => __('gallery:label_images_count'),
-        'descr' => __('gallery:desc_images_count'),
+        'title' => $lang['gallery:label_images_count'],
+        'descr' => $lang['gallery:desc_images_count'],
         'type' => 'input',
         'value' => pluginGetVariable($plugin, 'galleries_count'),
     ]);
     array_push($cfg, [
         'mode' => 'group',
-        'title' => __('group.general'),
+        'title' => $lang['group.general'],
         'entries' => $cfgX,
     ]);
 
     $cfgX = [];
     array_push($cfgX, [
         'name' => 'skin',
-        'title' => __('skin'),
-        'descr' => __('skin#desc'),
+        'title' => $lang['skin'],
+        'descr' => $lang['skin#desc'],
         'type' => 'select',
         'values' => $skList,
         'value' => pluginGetVariable($plugin, 'skin'),
     ]);
     array_push($cfg, [
         'mode' => 'group',
-        'title' => __('group.source'),
+        'title' => $lang['group.source'],
         'entries' => $cfgX,
     ]);
 
     $cfgX = [];
     array_push($cfgX, [
         'name' => 'cache',
-        'title' => __('cache'),
-        'descr' => __('cache#desc'),
+        'title' => $lang['cache'],
+        'descr' => $lang['cache#desc'],
         'type' => 'select',
-        'values' => ['1' => __('yesa'), '0' => __('noa')],
+        'values' => ['1' => $lang['yesa'], '0' => $lang['noa']],
         'value' => pluginGetVariable($plugin, 'cache'),
     ]);
     array_push($cfgX, [
         'name' => 'cache_expire',
-        'title' => __('cache_expire'),
-        'descr' => __('cache_expire#desc'),
+        'title' => $lang['cache_expire'],
+        'descr' => $lang['cache_expire#desc'],
         'type' => 'input',
         'value' => pluginGetVariable($plugin, 'cache_expire'),
     ]);
     array_push($cfg, [
         'mode' => 'group',
-        'title' => __('group.cache'),
+        'title' => $lang['group.cache'],
         'entries' => $cfgX,
     ]);
 
@@ -189,17 +190,17 @@ function main($plugin, $action)
 
 function showList($plugin, $action)
 {
-    global $twig, $mysql, $parse;
+    global $twig, $lang, $mysql, $parse;
 
     // Fill configuration parameters
     $cfg = [
         'navigation' => [
-            ['href' => 'admin.php?mod=extra-config&plugin=gallery', 'title' => __('group.config')],
-            ['class' => 'active', 'href' => 'admin.php?mod=extra-config&plugin=gallery&action=list', 'title' => __('gallery:button_list')],
-            ['href' => 'admin.php?mod=extra-config&plugin=gallery&action=widget_list', 'title' => __('gallery:button_widget_list')],
+            ['href' => 'admin.php?mod=extra-config&plugin=gallery', 'title' => $lang['group.config']],
+            ['class' => 'active', 'href' => 'admin.php?mod=extra-config&plugin=gallery&action=list', 'title' => $lang['gallery:button_list']],
+            ['href' => 'admin.php?mod=extra-config&plugin=gallery&action=widget_list', 'title' => $lang['gallery:button_widget_list']],
         ],
         'submit' => [
-            ['class' => 'btn btn-primary', 'href' => 'admin.php?mod=extra-config&plugin=gallery&action=update', 'title' => __('gallery:button_update')],
+            ['class' => 'btn btn-primary', 'href' => 'admin.php?mod=extra-config&plugin=gallery&action=update', 'title' => $lang['gallery:button_update']],
         ],
     ];
 
@@ -219,7 +220,7 @@ function showList($plugin, $action)
                     $next_order++;
                 }
                 closedir($dir);
-                msg(['message' => __('gallery:info_update_record')]);
+                msg(['message' => $lang['gallery:info_update_record']]);
             }
         } elseif ('edit_submit' == $action) {
             if (! isset($_POST['id']) or ! isset($_POST['title']) or ! isset($_POST['if_active']) or ! isset($_POST['skin']) or ! isset($_POST['icon']) or ! isset($_POST['description']) or ! isset($_POST['keywords']) or ! isset($_POST['images_count'])) {
@@ -268,20 +269,20 @@ function showList($plugin, $action)
 
             if ($t_update) {
                 $mysql->query('update '.prefix.'_gallery set '.$t_update.' where id = '.db_squote($id).' limit 1');
-                msg(['message' => __('gallery:info_update_record')]);
+                msg(['message' => $lang['gallery:info_update_record']]);
             } else {
                 msg(['type' => 'info', 'message' => 'Изменений нет']);
             }
         } elseif ('move_up' == $action or 'move_down' == $action) {
             if (empty($_REQUEST['id'])) {
-                msg(['type' => 'danger', 'message' => __('gallery:msg.no_gallery')]);
+                msg(['type' => 'danger', 'message' => $lang['gallery:msg.no_gallery']]);
                 break;
             }
             $id = intval($_REQUEST['id']);
 
             $gallery = $mysql->record('select id, position from '.prefix.'_gallery where `id`='.db_squote($id).' limit 1');
             if (! $gallery) {
-                msg(['type' => 'danger', 'message' => __('gallery:msg.no_gallery')]);
+                msg(['type' => 'danger', 'message' => $lang['gallery:msg.no_gallery']]);
                 break;
             }
             $count = 0;
@@ -291,7 +292,7 @@ function showList($plugin, $action)
 
             if ($action == 'move_up') {
                 if ($gallery['position'] == 1) {
-                    msg(['type' => 'danger', 'message' => __('gallery:info_update_record')]);
+                    msg(['type' => 'danger', 'message' => $lang['gallery:info_update_record']]);
                     break;
                 }
 
@@ -301,7 +302,7 @@ function showList($plugin, $action)
                 $mysql->query('update '.prefix.'_gallery set position='.db_squote($gallery2['position']).'where `id`='.db_squote($gallery['id']).' limit 1');
             } elseif ($action == 'move_down') {
                 if ($gallery['position'] == $count) {
-                    msg(['type' => 'danger', 'message' => __('gallery:info_update_record')]);
+                    msg(['type' => 'danger', 'message' => $lang['gallery:info_update_record']]);
                     break;
                 }
 
@@ -310,16 +311,16 @@ function showList($plugin, $action)
                 $mysql->query('update '.prefix.'_gallery set position='.db_squote($gallery['position']).'where `id`='.db_squote($gallery2['id']).' limit 1');
                 $mysql->query('update '.prefix.'_gallery set position='.db_squote($gallery2['position']).'where `id`='.db_squote($gallery['id']).' limit 1');
             }
-            msg(['type' => 'info', 'message' => __('gallery:info_update_record')]);
+            msg(['type' => 'info', 'message' => $lang['gallery:info_update_record']]);
         } elseif ('dell' == $action) {
             if (empty($_REQUEST['id'])) {
-                msg(['type' => 'danger', 'message' => __('gallery:msg.no_gallery')]);
+                msg(['type' => 'danger', 'message' => $lang['gallery:msg.no_gallery']]);
                 break;
             }
             $id = intval($_REQUEST['id']);
             $gallery = $mysql->record('select `title` from '.prefix.'_gallery where `id`='.db_squote($id).' limit 1');
             if (! $gallery) {
-                msg(['type' => 'danger', 'message' => __('gallery:msg.no_gallery')]);
+                msg(['type' => 'danger', 'message' => $lang['gallery:msg.no_gallery']]);
                 break;
             }
             $mysql->query('delete from '.prefix.'_gallery where `id`='.db_squote($id));
@@ -329,7 +330,7 @@ function showList($plugin, $action)
                 $mysql->query('update '.prefix.'_gallery set position='.db_squote($next_order).'where `id`='.db_squote($row['id']).' limit 1');
                 $next_order++;
             }
-            msg(['type' => 'info', 'message' => __('gallery:info_delete')]);
+            msg(['type' => 'info', 'message' => $lang['gallery:info_delete']]);
         }
 
         if ('list' != $action and pluginGetVariable('gallery', 'cache')) {
@@ -361,24 +362,24 @@ function showList($plugin, $action)
 
 function edit($plugin, $action)
 {
-    global $mysql;
+    global $lang, $mysql;
 
     // Load CORE Plugin
     $cPlugin = CPlugin::instance();
 
     // Prepare configuration parameters
     if (empty($skList = $cPlugin->getThemeSkin($plugin))) {
-        msg(['type' => 'danger', 'message' => __('msg.no_skin')]);
+        msg(['type' => 'danger', 'message' => $lang['msg.no_skin']]);
     }
 
     if (empty($_REQUEST['id'])) {
-        msg(['type' => 'danger', 'message' => __('gallery:msg.no_gallery')]);
+        msg(['type' => 'danger', 'message' => $lang['gallery:msg.no_gallery']]);
         return;
     }
     $id = intval($_REQUEST['id']);
     $gallery = $mysql->record('select * from '.prefix.'_gallery where `id`='.db_squote($id).' limit 1');
     if (! $gallery) {
-        msg(['type' => 'danger', 'message' => __('gallery:msg.no_gallery')]);
+        msg(['type' => 'danger', 'message' => $lang['gallery:msg.no_gallery']]);
         return;
     }
     $icon_list = [];
@@ -389,9 +390,9 @@ function edit($plugin, $action)
     // Fill configuration parameters
     $cfg = [
         'navigation' => [
-            ['href' => 'admin.php?mod=extra-config&plugin=gallery', 'title' => __('group.config')],
-            ['class' => 'active', 'href' => 'admin.php?mod=extra-config&plugin=gallery&action=list', 'title' => __('gallery:button_list')],
-            ['href' => 'admin.php?mod=extra-config&plugin=gallery&action=widget_list', 'title' => __('gallery:button_widget_list')],
+            ['href' => 'admin.php?mod=extra-config&plugin=gallery', 'title' => $lang['group.config']],
+            ['class' => 'active', 'href' => 'admin.php?mod=extra-config&plugin=gallery&action=list', 'title' => $lang['gallery:button_list']],
+            ['href' => 'admin.php?mod=extra-config&plugin=gallery&action=widget_list', 'title' => $lang['gallery:button_widget_list']],
         ],
         'action' => 'admin.php?mod=extra-config&plugin=gallery&action=edit_submit', // !!!
         'submit' => [['type' => 'default']],
@@ -405,81 +406,81 @@ function edit($plugin, $action)
     $cfgX = [];
     array_push($cfgX, [
         'name' => 'if_active',
-        'title' => __('gallery:label_if_active'),
-        'descr' => __('gallery:desc_if_active'),
+        'title' => $lang['gallery:label_if_active'],
+        'descr' => $lang['gallery:desc_if_active'],
         'type' => 'select',
-        'values' => ['1' => __('yesa'), '0' => __('noa')],
+        'values' => ['1' => $lang['yesa'], '0' => $lang['noa']],
         'value' => $gallery['if_active'],
     ]);
     array_push($cfgX, [
         'name' => 'name',
-        'title' => __('gallery:label_name'),
-        'descr' => __('gallery:desc_name'),
+        'title' => $lang['gallery:label_name'],
+        'descr' => $lang['gallery:desc_name'],
         'type' => 'input',
         'html_flags' => 'readonly',
         'value' => $gallery['name'],
     ]);
     array_push($cfgX, [
         'name' => 'title',
-        'title' => __('gallery:label_title'),
-        'descr' => __('gallery:desc_title'),
+        'title' => $lang['gallery:label_title'],
+        'descr' => $lang['gallery:desc_title'],
         'type' => 'input',
         'value' => $gallery['title'],
     ]);
     array_push($cfg, [
         'mode' => 'group',
-        'title' => __('gallery:legend_general'),
+        'title' => $lang['gallery:legend_general'],
         'entries' => $cfgX,
     ]);
 
     $cfgX = [];
     array_push($cfgX, [
         'name' => 'skin',
-        'title' => __('skin'),
-        'descr' => __('skin#desc'),
+        'title' => $lang['skin'],
+        'descr' => $lang['skin#desc'],
         'type' => 'select',
         'values' => $skList,
         'value' => $gallery['skin'],
     ]);
     array_push($cfgX, [
         'name' => 'images_count',
-        'title' => __('gallery:label_images_count_gallery'),
-        'descr' => __('gallery:desc_images_count_gallery'),
+        'title' => $lang['gallery:label_images_count_gallery'],
+        'descr' => $lang['gallery:desc_images_count_gallery'],
         'type' => 'input',
         'value' => $gallery['images_count'],
     ]);
     array_push($cfgX, [
         'name' => 'icon',
-        'title' => __('gallery:label_icon'),
-        'descr' => __('gallery:desc_icon'),
+        'title' => $lang['gallery:label_icon'],
+        'descr' => $lang['gallery:desc_icon'],
         'type' => 'select',
         'values' => $icon_list,
         'value' => $gallery['icon'],
     ]);
     array_push($cfg, [
         'mode' => 'group',
-        'title' => __('gallery:legend_gallery_one'),
+        'title' => $lang['gallery:legend_gallery_one'],
         'entries' => $cfgX,
     ]);
 
     $cfgX = [];
     array_push($cfgX, [
         'name' => 'description',
-        'title' => __('gallery:label_description'),
-        'descr' => __('gallery:desc_description'),
+        'title' => $lang['gallery:label_description'],
+        'descr' => $lang['gallery:desc_description'],
         'type' => 'input',
         'value' => $gallery['description'],
     ]);
     array_push($cfgX, [
         'name' => 'keywords',
-        'title' => __('gallery:label_keywords'),
-        'descr' => __('gallery:desc_keywords'),
+        'title' => $lang['gallery:label_keywords'],
+        'descr' => $lang['gallery:desc_keywords'],
         'type' => 'input',
         'value' => $gallery['keywords'],
     ]);
     array_push($cfg, [
         'mode' => 'group',
-        'title' => __('gallery:legend_description'),
+        'title' => $lang['gallery:legend_description'],
         'entries' => $cfgX,
     ]);
 
@@ -488,17 +489,17 @@ function edit($plugin, $action)
 
 function showWidgetList($plugin, $action)
 {
-    global $twig, $mysql, $parse;
+    global $twig, $lang, $mysql, $parse;
 
     // Fill configuration parameters
     $cfg = [
         'navigation' => [
-            ['href' => 'admin.php?mod=extra-config&plugin=gallery', 'title' => __('group.config')],
-            ['href' => 'admin.php?mod=extra-config&plugin=gallery&action=list', 'title' => __('gallery:button_list')],
-            ['class' => 'active', 'href' => 'admin.php?mod=extra-config&plugin=gallery&action=widget_list', 'title' => __('gallery:button_widget_list')],
+            ['href' => 'admin.php?mod=extra-config&plugin=gallery', 'title' => $lang['group.config']],
+            ['href' => 'admin.php?mod=extra-config&plugin=gallery&action=list', 'title' => $lang['gallery:button_list']],
+            ['class' => 'active', 'href' => 'admin.php?mod=extra-config&plugin=gallery&action=widget_list', 'title' => $lang['gallery:button_widget_list']],
         ],
         'submit' => [
-            ['class' => 'btn btn-primary', 'href' => 'admin.php?mod=extra-config&plugin=gallery&action=widget_add', 'title' => __('gallery:button_widget_add')],
+            ['class' => 'btn btn-primary', 'href' => 'admin.php?mod=extra-config&plugin=gallery&action=widget_add', 'title' => $lang['gallery:button_widget_add']],
         ],
     ];
 
@@ -535,16 +536,16 @@ function showWidgetList($plugin, $action)
             // Save configuration parameters of plugins
             $cPlugin->saveConfig();
 
-            msg(['message' => __('gallery:info_update_record')]);
+            msg(['message' => $lang['gallery:info_update_record']]);
         } elseif ('widget_dell' == $action) {
             if (empty($_REQUEST['id'])) {
-                msg(['type' => 'danger', 'message' => __('gallery:msg.no_widget')]);
+                msg(['type' => 'danger', 'message' => $lang['gallery:msg.no_widget']]);
                 break;
             }
             $id = intval($_REQUEST['id']);
             $widgets = pluginGetVariable('gallery', 'widgets');
             if (empty($widgets[$id])) {
-                msg(['type' => 'danger', 'message' => __('gallery:msg.no_widget')]);
+                msg(['type' => 'danger', 'message' => $lang['gallery:msg.no_widget']]);
                 break;
             }
             if (isset($widgets[$id])) {
@@ -555,7 +556,7 @@ function showWidgetList($plugin, $action)
                 // Save configuration parameters of plugins
                 $cPlugin->saveConfig();
             }
-            msg(['type' => 'info', 'message' => __('gallery:info_delete')]);
+            msg(['type' => 'info', 'message' => $lang['gallery:info_delete']]);
         }
 
         if ('widget_list' != $action and pluginGetVariable('gallery', 'cache')) {
@@ -574,7 +575,7 @@ function showWidgetList($plugin, $action)
                 'title' => $row['title'],
                 'gallery' => $row['gallery'],
                 'skin' => $row['skin'],
-                'rand' => $row['if_rand'] ? __('gallery:label_yes') : __('gallery:label_no'),
+                'rand' => $row['if_rand'] ? $lang['gallery:label_yes'] : $lang['gallery:label_no'],
             ];
         }
     }
@@ -589,14 +590,14 @@ function showWidgetList($plugin, $action)
 
 function editWidget($plugin, $action)
 {
-    global $tpl, $mysql;
+    global $tpl, $lang, $mysql;
 
     // Load CORE Plugin
     $cPlugin = CPlugin::instance();
 
     // Prepare configuration parameters
     if (empty($skList = $cPlugin->getThemeSkin($plugin))) {
-        msg(['type' => 'danger', 'message' => __('msg.no_skin')]);
+        msg(['type' => 'danger', 'message' => $lang['msg.no_skin']]);
     }
 
     if (($galleries = cacheRetrieveFile('galleries.dat', 86400, 'gallery')) === false) {
@@ -659,9 +660,9 @@ function editWidget($plugin, $action)
     // Fill configuration parameters
     $cfg = [
         'navigation' => [
-            ['href' => 'admin.php?mod=extra-config&plugin=gallery', 'title' => __('group.config')],
-            ['href' => 'admin.php?mod=extra-config&plugin=gallery&action=list', 'title' => __('gallery:button_list')],
-            ['class' => 'active', 'href' => 'admin.php?mod=extra-config&plugin=gallery&action=widget_list', 'title' => __('gallery:button_widget_list')],
+            ['href' => 'admin.php?mod=extra-config&plugin=gallery', 'title' => $lang['group.config']],
+            ['href' => 'admin.php?mod=extra-config&plugin=gallery&action=list', 'title' => $lang['gallery:button_list']],
+            ['class' => 'active', 'href' => 'admin.php?mod=extra-config&plugin=gallery&action=widget_list', 'title' => $lang['gallery:button_widget_list']],
         ],
         'action' => 'admin.php?mod=extra-config&plugin=gallery&action=widget_edit_submit', // !!!
         'submit' => [['type' => 'default']],
@@ -675,53 +676,53 @@ function editWidget($plugin, $action)
     $cfgX = [];
     array_push($cfgX, [
         'name' => 'if_active',
-        'title' => __('gallery:label_widget_if_active'),
-        'descr' => __('gallery:desc_widget_if_active'),
+        'title' => $lang['gallery:label_widget_if_active'],
+        'descr' => $lang['gallery:desc_widget_if_active'],
         'type' => 'select',
-        'values' => ['1' => __('yesa'), '0' => __('noa')],
+        'values' => ['1' => $lang['yesa'], '0' => $lang['noa']],
         'value' => $if_active,
     ]);
     array_push($cfgX, [
         'name' => 'name',
-        'title' => __('gallery:label_widget_name'),
-        'descr' => __('gallery:desc_widget_name').'<code>{{ plugin_gallery_ID }}</code>',
+        'title' => $lang['gallery:label_widget_name'],
+        'descr' => $lang['gallery:desc_widget_name'].'<code>{{ plugin_gallery_ID }}</code>',
         'type' => 'input',
         'value' => $name,
     ]);
     array_push($cfgX, [
         'name' => 'title',
-        'title' => __('gallery:label_widget_title'),
-        'descr' => __('gallery:desc_widget_title'),
+        'title' => $lang['gallery:label_widget_title'],
+        'descr' => $lang['gallery:desc_widget_title'],
         'type' => 'input',
         'value' => $title,
     ]);
     array_push($cfgX, [
         'name' => 'gallery',
-        'title' => __('gallery:label_gallery'),
-        'descr' => __('gallery:desc_gallery'),
+        'title' => $lang['gallery:label_gallery'],
+        'descr' => $lang['gallery:desc_gallery'],
         'type' => 'select',
         'values' => $galleriesSelect,
         'value' => $gallery,
     ]);
     array_push($cfg, [
         'mode' => 'group',
-        'title' => __('gallery:legend_general'),
+        'title' => $lang['gallery:legend_general'],
         'entries' => $cfgX,
     ]);
 
     $cfgX = [];
     array_push($cfgX, [
         'name' => 'skin',
-        'title' => __('skin'),
-        'descr' => __('skin#desc'),
+        'title' => $lang['skin'],
+        'descr' => $lang['skin#desc'],
         'type' => 'select',
         'values' => $skList,
         'value' => $skin,
     ]);
     array_push($cfgX, [
         'name' => 'images_count',
-        'title' => __('gallery:label_images_count_widget'),
-        'descr' => __('gallery:desc_images_count_widget'),
+        'title' => $lang['gallery:label_images_count_widget'],
+        'descr' => $lang['gallery:desc_images_count_widget'],
         'type' => 'input',
         'value' => $images_count,
     ]);
@@ -735,7 +736,7 @@ function editWidget($plugin, $action)
     ]);
     array_push($cfg, [
         'mode' => 'group',
-        'title' => __('gallery:legend_widget_one'),
+        'title' => $lang['gallery:legend_widget_one'],
         'entries' => $cfgX,
     ]);
 
