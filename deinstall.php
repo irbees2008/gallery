@@ -1,33 +1,32 @@
 <?php
 
-/*
- * Configuration file for plugin
- */
+// Configuration file for plugin
 
 // Protect against hack attempts
-if (!defined('BBCMS')) die ('HAL');
+if (! defined('NGCMS')) {
+    die('HAL');
+}
 
 // Load lang files
 Lang::loadPlugin($plugin, 'admin', '', ':');
 
-$db_update = array(
-    array(
+$db_update = [
+    [
         'table' => 'images',
         'action' => 'modify',
-        'fields' => array(
-            array('action' => 'drop', 'name' => 'com'),
-            array('action' => 'drop', 'name' => 'views'),
-            )
-    ),
-    array(
-        'table'  => 'gallery',
+        'fields' => [
+            ['action' => 'drop', 'name' => 'com'],
+            ['action' => 'drop', 'name' => 'views'],
+        ],
+    ],
+    [
+        'table' => 'gallery',
         'action' => 'drop',
-    )
-);
+    ],
+];
 
 if ('commit' == $action) {
     if (fixdb_plugin_install('gallery', $db_update, 'deinstall')) {
-
         $ULIB = new UrlLibrary();
         $ULIB->loadConfig();
         $ULIB->removeCommand('gallery', 'image');
@@ -55,5 +54,5 @@ if ('commit' == $action) {
         plugin_mark_deinstalled('gallery');
     }
 } else {
-	generate_install_page('gallery', __('gallery:desc_deinstall'), 'deinstall');
+    generate_install_page('gallery', __('gallery:desc_deinstall'), 'deinstall');
 }
