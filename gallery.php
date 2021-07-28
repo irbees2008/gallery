@@ -356,9 +356,6 @@ class PluginGallery
         global $userROW, $template, $tpl, $twig, $lang, $mysql, $TemplateCache, $SYSTEM_FLAGS;
         global $galleries;
 
-        // Load CORE Plugin
-        $cPlugin = CPlugin::instance();
-
         $imageName = ! empty($params['name']) ? secure_html($params['name']) : false;
         $gallery['name'] = ! empty($params['gallery']) ? secure_html($params['gallery']) : false;
 

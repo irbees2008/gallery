@@ -58,9 +58,6 @@ function main($plugin, $action)
 {
     global $lang;
 
-    // Load CORE Plugin
-    $cPlugin = CPlugin::instance();
-
     // Prepare configuration parameters
     if (empty($skList = skinsListForPlugin($plugin))) {
         msg(['type' => 'danger', 'message' => $lang['msg.no_skin']]);
@@ -364,9 +361,6 @@ function edit($plugin, $action)
 {
     global $lang, $mysql;
 
-    // Load CORE Plugin
-    $cPlugin = CPlugin::instance();
-
     // Prepare configuration parameters
     if (empty($skList = skinsListForPlugin($plugin))) {
         msg(['type' => 'danger', 'message' => $lang['msg.no_skin']]);
@@ -531,8 +525,7 @@ function showWidgetList($plugin, $action)
             $widgets[$id]['gallery'] = $gallery;
 
             pluginSetVariable('gallery', 'widgets', $widgets);
-            // Load CORE Plugin
-            $cPlugin = CPlugin::instance();
+
             // Save configuration parameters of plugins
             pluginsSaveConfig();
 
@@ -551,8 +544,7 @@ function showWidgetList($plugin, $action)
             if (isset($widgets[$id])) {
                 unset($widgets[$id]);
                 pluginSetVariable('gallery', 'widgets', $widgets);
-                // Load CORE Plugin
-                $cPlugin = CPlugin::instance();
+
                 // Save configuration parameters of plugins
                 pluginsSaveConfig();
             }
@@ -591,9 +583,6 @@ function showWidgetList($plugin, $action)
 function editWidget($plugin, $action)
 {
     global $tpl, $lang, $mysql;
-
-    // Load CORE Plugin
-    $cPlugin = CPlugin::instance();
 
     // Prepare configuration parameters
     if (empty($skList = skinsListForPlugin($plugin))) {

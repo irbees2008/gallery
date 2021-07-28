@@ -39,13 +39,6 @@ if ('commit' == $action) {
         $UHANDLER->removePluginHandlers('gallery', 'gallery');
         $UHANDLER->removePluginHandlers('gallery', '');
 
-        // Load CORE Plugin
-        $cPlugin = CPlugin::instance();
-        // Load list of active plugins
-        $plugins = $cPlugin->getList();
-        unset($plugins['config']['gallery']);
-        // Save configuration parameters of plugins
-        $cPlugin->setConfig($plugins['config']);
         // Save configuration parameters of plugins
         pluginsSaveConfig();
         $ULIB->saveConfig();

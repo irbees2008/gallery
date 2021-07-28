@@ -336,8 +336,6 @@ function plugin_gallery_install($action)
                     pluginSetVariable('gallery', $k, $v);
                 }
 
-                // Load CORE Plugin
-                $cPlugin = CPlugin::instance();
                 // Save configuration parameters of plugins
                 pluginsSaveConfig();
                 $ULIB->saveConfig();
