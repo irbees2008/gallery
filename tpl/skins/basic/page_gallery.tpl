@@ -17,9 +17,9 @@
                     </a>
                 </h4>
                 <p class="card-text">
-                    Комментариев: {{ img.com }} • Просмотров: {{ img.views }}
+                    Комментариев: {{ image.com }} • Просмотров: {{ image.views }}
                 </p>
-                <p class="card-text">{{ img.description }}</p>
+                <p class="card-text">{{ image.description }}</p>
             </div>
         </div>
         {% endfor %}

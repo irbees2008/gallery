@@ -503,7 +503,7 @@ class PluginGallery
                 'description' => $gallery['description'],
                 'keywords' => $gallery['keywords'],
             ],
-            'img' => [
+            'image' => [
                 'name' => $row['name'],
                 'src' => images_url.'/'.$gallery['name'].'/'.$row['name'],
                 'description' => $row['description'],

@@ -1,20 +1,20 @@
-<h2 class="section-title">{{ img.name }}</h2>
+<h2 class="section-title">{{ image.name }}</h2>
 
 <section class="section">
     <div class="card">
-        <img src="{{ img.src }}" alt="{{ img.name }}" class="card-img-top img-fluid" style="
+        <img src="{{ image.src }}" alt="{{ image.name }}" class="card-img-top img-fluid" style="
             display: block;
             width: 100%;
             height: auto;
         " />
         <div class="card-body">
             <p class="card-text">
-                {{ img.description }}
+                {{ image.description }}
             </p>
             <p class="card-text">
-                <small class="text-muted pull-left">Загружено: {{ img.date }}</small>
+                <small class="text-muted pull-left">Загружено: {{ image.date }}</small>
                 <small class="text-muted pull-right">
-                    Комментариев: {{ img.com }} • Просмотров: {{ img.views }}
+                    Комментариев: {{ image.com }} • Просмотров: {{ image.views }}
                 </small>
             </p>
         </div>
