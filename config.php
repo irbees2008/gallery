@@ -357,9 +357,9 @@ function showList($plugin, $section)
             msg(['type' => 'info', 'text' => $lang[$plugin.':info_delete']]);
         }
 
-        // if ('list' !== $section and pluginGetVariable('gallery', 'cache')) {
-        //     clearCacheFiles($plugin);
-        // }
+        if ('list' !== $section and pluginGetVariable('gallery', 'cache')) {
+            clearCacheFiles($plugin);
+        }
     } while (0);
 
     $tVars = [];
@@ -610,9 +610,9 @@ function showWidgetList($plugin, $section)
             msg(['type' => 'info', 'text' => $lang[$plugin.':info_delete']]);
         }
 
-        // if ('widget_list' != $section and pluginGetVariable('gallery', 'cache')) {
-        //     clearCacheFiles($plugin);
-        // }
+        if ('widget_list' != $section and pluginGetVariable('gallery', 'cache')) {
+            clearCacheFiles($plugin);
+        }
     } while (0);
 
     $items = [];
@@ -833,4 +833,43 @@ function skinsListForPlugin($plugin)
     }
 
     return $skList;
+}
+
+// clear Cache Files
+function clearCacheFiles(string $plugin = '')
+{
+    $error = false;
+    $listSkip = '';
+    $cacheDir = $plugin ? get_plugcache_dir($plugin) : root . 'cache/';
+
+    $dirIterator = new RecursiveDirectoryIterator($cacheDir, RecursiveDirectoryIterator::SKIP_DOTS);
+    $iterator = new RecursiveIteratorIterator($dirIterator, RecursiveIteratorIterator::LEAVES_ONLY);
+
+    foreach ($iterator as $object) {
+        if ($object->isFile() or $object->isDir()) {
+            if (! @unlink($object->getPathname())) {
+                $listSkip .= '<br>' . $object->getBasename();
+                $error = true;
+            }
+        }
+    }
+
+    if ($error) {
+        msg([
+            'type' => 'error',
+            'text' => 'Не весь кэш удалось очистить!<hr>Список пропущенных файлов:' . $listSkip,
+        ]);
+    } else {
+        msg([
+            'text' => $plugin ? 'Кэш плагина очищен!' : 'Кэш системы очищен!',
+        ]);
+    }
+
+    // Clear cache OPCache
+    if(function_exists('opcache_get_status')) {
+        opcache_reset();
+    }
+
+    // Create a protective .htaccess
+    create_access_htaccess();
 }
