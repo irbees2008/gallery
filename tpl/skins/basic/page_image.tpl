@@ -23,9 +23,9 @@
 
 <nav class="section">
     <ul class="pagination justify-content-center">
-        {{ prevlink }}
-        {{ gallerylink }}
-        {{ nextlink }}
+        <li>{{ prevlink }}
+        <li>{{ gallerylink }}
+        <li>{{ nextlink }}
     </ul>
 </nav>
 
