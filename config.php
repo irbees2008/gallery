@@ -817,8 +817,11 @@ function skinsListForPlugin($plugin)
 {
     $skList = [];
 
+    $templateDirectorySkins = tpl_site."plugins/{$plugin}/skins";
+    $pluginDirectorySkins = extras_dir."/{$plugin}/tpl/skins";
+
     $skinsDirectory = opendir(
-        extras_dir."/{$plugin}/tpl/skins"
+        is_dir($templateDirectorySkins) ? $templateDirectorySkins : $pluginDirectorySkins
     );
 
     if (false !== $skinsDirectory) {
