@@ -22,14 +22,20 @@
             <td>{{ item.rand }}</td>
             <td>{{ item.skin }}</td>
             <td class="text-right">
-                <div class="btn-group">
-                    <a href="admin.php?mod=extra-config&plugin=gallery&action=widget_add&id={{ item.id }}" class="btn btn-default"><i class="fa fa-pencil"></i></a>
-                    <a href="#" onclick="confirmIt('admin.php?mod=extra-config&plugin=gallery&action=widget_dell&id={{ item.id }}','{{ lang['sure_del'] }}');return false;" class="btn btn-danger"><i class="fa fa-trash-o"></i></a>
+                <div class="btn-group btn-group-sm">
+                    <a href="admin.php?mod=extra-config&plugin=gallery&section=widget_add&id={{ item.id }}" class="btn btn-outline-primary">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                </div>
+                <div class="btn-group btn-group-sm">
+                    <a href="#" onclick="confirmit('admin.php?mod=extra-config&plugin=gallery&section=widget_dell&id={{ item.id }}','{{ lang['gallery:sure_del'] }}');return false;" class="btn btn-outline-danger">
+                        <i class="fa fa-trash-o"></i>
+                    </a>
                 </div>
             </td>
         </tr>
     {% else %}
-        <tr><td colspan="9">{{ lang['not_found'] }}</td></tr>
+        <tr><td colspan="9">{{ lang['gallery:not_found'] }}</td></tr>
     {% endfor %}
     </tbody>
 </table>
