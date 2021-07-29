@@ -3,16 +3,24 @@
 <section class="section">
     <p>{{ gallery_description }}</p>
     <div class="card-columns">
-        {% for img in images %}
+        {% for image in images %}
         <div class="card card-inverse">
-            <a href="{{ img.url }}" title="{{ img.name }}">
-                <img src="{{ img.src_thumb }}" alt="{{ img.name }}" class="card-img img-fluid" />
-                <div class="card-img-overlay">
-                    <h4 class="card-title">{{ img.name }}</h4>
-                    <p class="card-text"><i class="fa fa-comments"></i> {{ img.com }} • <i class="fa fa-eye"></i> {{ img.views }}</p>
-                    <p class="card-text">{{ img.description }}</p>
-                </div>
-            </a>
+            <img src="{{ image.src_thumb }}" alt="{{ image.name|e }}" class="card-img img-fluid" style="
+                display: block;
+                width: 100%;
+                height: auto;
+            " />
+            <div class="card-img-overlay">
+                <h4 class="card-title">
+                    <a href="{{ image.url }}" title="{{ image.name|e }}">
+                        {{ image.name }}
+                    </a>
+                </h4>
+                <p class="card-text">
+                    Комментариев: {{ img.com }} • Просмотров: {{ img.views }}
+                </p>
+                <p class="card-text">{{ img.description }}</p>
+            </div>
         </div>
         {% endfor %}
     </div>
