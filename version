@@ -3,16 +3,21 @@
 ;
 
 ID: gallery
-Name: Gallery Manager
-Version: 0.9.7-alpha
-Actions: ppages; gallery.php
-Actions: index; gallery.php
-Install: install.php
-Deinstall: deinstall.php
+Type: plugin
+Version: 0.0.1
+
+File: gallery.php
 Config: config.php
-Type: module
+Acts: index, ppages
+Library: library; src/Gallery.php
+Install: install.php
+Preinstall: default_no
+Deinstall: deinstall.php
+
 Title: Gallery Manager
-Description: Позволяет управлять галереями на сайте
-Information: Позволяет управлять галереями на сайте
-Author: RusiQ
-Author_URI: http://bixbite.site/
+Name: Gallery Manager
+Description: Позволяет управлять галереями на сайте.
+Information: Позволяет управлять галереями на сайте.
+
+Author: rusiq
+Author_URI: https://github.com/russsiq
