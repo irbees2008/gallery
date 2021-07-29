@@ -437,8 +437,6 @@ function edit($plugin, $section)
         ],
     ];
 
-    $lang['commit_change'] = $lang[$plugin.':button_update'];
-
     $cfgX = [];
     array_push($cfgX, [
         'name' => 'if_active',
