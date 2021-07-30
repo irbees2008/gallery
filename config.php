@@ -564,7 +564,7 @@ function showWidgetList($plugin, $section)
 
             $widgets = pluginGetVariable('gallery', 'widgets') ?: [];
 
-            $id = isset($_POST['id']) ? intval($_POST['id']) : count($widgets) + 1;
+            $id = isset($_POST['id']) ? intval($_POST['id']) : array_key_last($widgets) + 1;
             $name = $parse->translit($_POST['name']);
             $title = secure_html($_POST['title']);
             $if_active = intval($_POST['if_active']);
@@ -680,7 +680,7 @@ function editWidget($plugin, $section)
 
     $widgets = pluginGetVariable('gallery', 'widgets') ?: [];
 
-    $id = count($widgets) + 1;
+    $id = array_key_last($widgets) + 1;
     $if_active = 1;
     $name = '';
     $title = '';
@@ -691,7 +691,7 @@ function editWidget($plugin, $section)
     if (isset($_REQUEST['id'])) {
         $id = intval($_REQUEST['id']);
         if (empty($widgets[$id])) {
-            $id = count($widgets) + 1;
+            $id = array_key_last($widgets) + 1;
         } else {
             $if_active = $widgets[$id]['if_active'];
             $name = $widgets[$id]['name'];
