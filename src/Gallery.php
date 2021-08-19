@@ -506,6 +506,7 @@ class PluginGallery
             'image' => [
                 'name' => $row['name'],
                 'src' => images_url.'/'.$gallery['name'].'/'.$row['name'],
+                'src_thumb' => images_url . '/' . $gallery['name'] . '/thumb/' . $row['name'],
                 'description' => $row['description'],
                 'date' => LangDate('j.m.Y - H:i', $row['date']),
                 'dateStamp' => $row['date'],
